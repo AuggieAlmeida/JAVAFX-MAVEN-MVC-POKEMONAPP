@@ -85,7 +85,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>br.com.fatec.n2_poo_pokemenu/br.com.fatec.n2_poo_pokemenu.HelloApplication
+                            <mainClass>br.com.fatec.n2_poo_pokemenu/br.com.fatec.n2_poo_pokemenu.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
