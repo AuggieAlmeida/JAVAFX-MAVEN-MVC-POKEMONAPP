@@ -6,6 +6,7 @@ module br.com.fatec.n2_poo_pokemenu {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens br.com.fatec.n2_poo_pokemenu to javafx.fxml;
     exports br.com.fatec.n2_poo_pokemenu;
