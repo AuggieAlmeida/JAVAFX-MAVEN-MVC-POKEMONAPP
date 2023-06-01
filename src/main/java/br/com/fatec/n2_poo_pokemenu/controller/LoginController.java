@@ -40,12 +40,20 @@ public class LoginController implements Initializable {
         trainerDAO.setConn(conn);
     }
 
+    /**
+     * Fechar janela
+     * @param event
+     */
     @FXML
     private void handleExitAction(ActionEvent event) {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Botão para realizar o login
+     * @param event
+     */
     @FXML
     private void btnLoginOnClick(ActionEvent event){
         System.out.println(conn + "\n\n");

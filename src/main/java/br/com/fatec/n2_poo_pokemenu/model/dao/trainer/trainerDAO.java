@@ -41,6 +41,11 @@ public class trainerDAO implements ItrainerDAO {
         return null;
     }
 
+    /**
+     * Autenticação de conta
+     * @param email Email ou nickname do usuário
+     * @param password Senha do usuário
+     */
     @Override
     public void findByLogin(String email, String password) {
         String sql = "SELECT * FROM trainer WHERE (email=? OR nickname=?) AND password=?";

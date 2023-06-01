@@ -6,7 +6,7 @@ import java.util.Date;
 public class trainer implements Serializable {
     private Integer trainerId;
     private String name;
-    private String secondName;
+    private String nickname;
     private String email;
     private String password;
     private int age;
@@ -14,10 +14,11 @@ public class trainer implements Serializable {
     private Double money;
     private Date date;
 
-    public trainer(Integer trainerId, String name, String secondName, String email, String password, int age, Boolean gender, Double money, Date date) {
+    // Construtor
+    public trainer(Integer trainerId, String name, String nickname, String email, String password, int age, Boolean gender, Double money, Date date) {
         this.trainerId = trainerId;
         this.name = name;
-        this.secondName = secondName;
+        this.nickname = nickname;
         this.email = email;
         this.password = password;
         this.age = age;
@@ -26,6 +27,8 @@ public class trainer implements Serializable {
         this.date = date;
     }
 
+
+    // Getters e Setters
     public Integer getTrainerId() {
         return trainerId;
     }
@@ -43,11 +46,11 @@ public class trainer implements Serializable {
     }
 
     public String getSecondName() {
-        return secondName;
+        return nickname;
     }
 
     public void setSecondName(String secondName) {
-        this.secondName = secondName;
+        this.nickname = secondName;
     }
 
     public String getEmail() {
@@ -99,6 +102,7 @@ public class trainer implements Serializable {
     }
 
 
+    // Função override de Serializable, confere objeto trainer é um modelo de trainer ou igual outro trainer
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof trainer T)) {
@@ -110,9 +114,10 @@ public class trainer implements Serializable {
         return T.trainerId.equals(this.trainerId);
     }
 
+    // Função override de Serializable, converte Trainer em String
     @Override
     public String toString() {
-        return "User [id=" + trainerId + ", name =" + name + secondName + ", email =" + email + ", password =" + password + ", idade ="
+        return "Trainer [id=" + trainerId + ", name =" + name + nickname + ", email =" + email + ", password =" + password + ", idade ="
                 + age + ", Gênero =" + gender + ", Dinheiro =" + money + ", Registrado em =" + date + "]";
     }
 }
