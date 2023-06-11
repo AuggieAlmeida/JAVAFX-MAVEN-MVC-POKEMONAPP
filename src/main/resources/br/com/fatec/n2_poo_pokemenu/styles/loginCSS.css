@@ -35,12 +35,12 @@
     -fx-border-width: 0;
 }
 
-.btn_close {
+.btn_exit {
     -fx-background-color: #FFFFFF;
     -fx-background-radius: 25;
 }
 
-.btn_close:hover {
+.btn_exit:hover {
     -fx-background-color: #961414;
 }
 

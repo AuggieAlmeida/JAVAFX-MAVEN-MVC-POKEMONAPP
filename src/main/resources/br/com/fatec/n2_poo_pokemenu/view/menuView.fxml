@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.menuController">
    <children>
       <ImageView fitHeight="55.0" fitWidth="700.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,5 +18,27 @@
             <Image url="@../imgs/sidebar.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="230.0" fitWidth="520.0" layoutX="172.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/menu/pokemon-logo-8.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="55.0" fitWidth="440.0" layoutX="432.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/menu/a6c357f049444a976b36808db4767be2.png" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="600.0" prefWidth="100.0">
+         <children>
+            <Button fx:id="btn_pokedex" mnemonicParsing="false" onAction="#btnPokedexOnClick" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+            <Button fx:id="btn_trainer" mnemonicParsing="false" onAction="#btnTrainerOnClick" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+            <Button fx:id="btn_party" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+            <Button fx:id="btn_bag" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+            <Button fx:id="btn_social" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+            <Button fx:id="btn_config" mnemonicParsing="false" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
+         </children>
+      </VBox>
+      <Button fx:id="btn_exit" layoutX="746.0" mnemonicParsing="false" onAction="#handleExitAction" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
+      <Button fx:id="btn_menu" layoutX="686.0" mnemonicParsing="false" onAction="#btnMenuOnClick" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
    </children>
 </AnchorPane>

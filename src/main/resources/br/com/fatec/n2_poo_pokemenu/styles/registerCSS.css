@@ -21,3 +21,35 @@
     -fx-background-radius: 20;
     -fx-text-fill: #FFFFFF;
 }
+
+.btn_cad:hover {
+    -fx-background-color: #961414;
+}
+
+.btn_cad:pressed {
+    -fx-background-color: #a34040;
+}
+
+.btn_return:hover {
+    -fx-background-color: #961414;
+    -fx-border-color: #961414;
+    -fx-border-width: 0;
+}
+
+.btn_return:pressed {
+    -fx-background-color: #a34040;
+    -fx-border-width: 0;
+}
+
+.btn_exit {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 25;
+}
+
+.btn_exit:hover {
+    -fx-background-color: #961414;
+}
+
+.btn_exit:hover {
+    -fx-background-color: #961414;
+}

@@ -1,27 +1,33 @@
 package br.com.fatec.n2_poo_pokemenu.controller;
 
+import br.com.fatec.n2_poo_pokemenu.Application;
 import br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO;
 import br.com.fatec.n2_poo_pokemenu.model.database.Idatabase;
 import br.com.fatec.n2_poo_pokemenu.model.database.databaseFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 
-public class LoginController implements Initializable {
+public class registerController implements Initializable {
+
     Stage stage;
     @FXML
     public TextField txt_email;
     @FXML
     public TextField txt_pass;
     @FXML
-    public Button btn_log;
+    public Button btn_ret;
     @FXML
     public Button btn_cad;
     @FXML
@@ -32,7 +38,7 @@ public class LoginController implements Initializable {
 
     private final Idatabase db = databaseFactory.getDatabase("mysql");
     private final Connection conn = db != null ? db.connect() : null;
-    private final trainerDAO trainerDAO = new trainerDAO();
+    private final br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO trainerDAO = new trainerDAO();
 
 
     @Override
@@ -50,14 +56,17 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    /**
-     * Botão para realizar o login
-     * @param event
-     */
     @FXML
-    private void btnLoginOnClick(ActionEvent event){
-        System.out.println(conn + "\n\n");
-        trainerDAO.findByLogin(txt_email.getText(), txt_pass.getText());
-        lb_auth.setText("Alo");
+    private void btnRetOnClick(ActionEvent event) {
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/loginView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 }

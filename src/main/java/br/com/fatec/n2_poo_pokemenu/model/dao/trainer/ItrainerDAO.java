@@ -8,5 +8,5 @@ public interface ItrainerDAO extends IcrudDAO<trainer> {
 
     List<trainer> selectAllTrainers();
 
-    void findByLogin(String email, String password);
+    Boolean findByLogin(String email, String password);
 }

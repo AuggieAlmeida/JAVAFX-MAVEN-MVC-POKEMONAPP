@@ -10,56 +10,55 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/registerCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/registerCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.registerController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/Frame%202register.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt_email" alignment="CENTER" layoutX="210.0" layoutY="159.0" prefHeight="35.0" prefWidth="190.0" promptText="Nome" styleClass="textfield">
+      <TextField fx:id="txt_name" alignment="CENTER" layoutX="210.0" layoutY="159.0" prefHeight="35.0" prefWidth="190.0" promptText="Nome" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_email1" alignment="CENTER" layoutX="210.0" layoutY="204.0" prefHeight="35.0" prefWidth="190.0" promptText="Sobrenome" styleClass="textfield">
+      <TextField fx:id="txt_secname" alignment="CENTER" layoutX="210.0" layoutY="204.0" prefHeight="35.0" prefWidth="190.0" promptText="Sobrenome" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_email11" alignment="CENTER" layoutX="210.0" layoutY="249.0" prefHeight="35.0" prefWidth="190.0" promptText="Nickname" styleClass="textfield">
+      <TextField fx:id="txt_nick" alignment="CENTER" layoutX="210.0" layoutY="249.0" prefHeight="35.0" prefWidth="190.0" promptText="Nickname" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_email111" alignment="CENTER" layoutX="210.0" layoutY="300.0" prefHeight="35.0" prefWidth="110.0" promptText="Idade" styleClass="textfield">
+      <TextField fx:id="txt_age" alignment="CENTER" layoutX="210.0" layoutY="300.0" prefHeight="35.0" prefWidth="110.0" promptText="Idade" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <ComboBox layoutX="329.0" layoutY="299.0" prefHeight="35.0" prefWidth="70.0" styleClass="combobox" />
-      <TextField fx:id="txt_email1111" alignment="CENTER" layoutX="210.0" layoutY="349.0" prefHeight="35.0" prefWidth="380.0" promptText="Email" styleClass="textfield">
+      <ComboBox fx:id="cmb_gender" layoutX="329.0" layoutY="299.0" prefHeight="35.0" prefWidth="70.0" styleClass="combobox" />
+      <TextField fx:id="txt_email" alignment="CENTER" layoutX="210.0" layoutY="349.0" prefHeight="35.0" prefWidth="380.0" promptText="Email" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_email1112" alignment="CENTER" layoutX="210.0" layoutY="403.0" prefHeight="35.0" prefWidth="170.0" promptText="Senha" styleClass="textfield">
+      <TextField fx:id="txt_pass" alignment="CENTER" layoutX="210.0" layoutY="403.0" prefHeight="35.0" prefWidth="170.0" promptText="Senha" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="txt_email11121" alignment="CENTER" layoutX="420.0" layoutY="403.0" prefHeight="35.0" prefWidth="170.0" promptText="Repetir Senha" styleClass="textfield">
+      <TextField fx:id="txt_pass2" alignment="CENTER" layoutX="420.0" layoutY="403.0" prefHeight="35.0" prefWidth="170.0" promptText="Repetir Senha" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font>
       </TextField>
-      <Button layoutX="440.0" layoutY="468.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="btn_cad" text="Finalizar" textFill="WHITE">
+      <Button fx:id="btn_cad" layoutX="440.0" layoutY="468.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="btn_cad" text="Finalizar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="210.0" layoutY="468.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="btn_return" text="&lt;&lt;&lt;" textFill="WHITE">
+      <Button fx:id="btn_ret" alignment="CENTER" layoutX="210.0" layoutY="468.0" mnemonicParsing="false" onAction="#btnRetOnClick" prefHeight="60.0" prefWidth="150.0" styleClass="btn_return" text="&lt;&lt;&lt;" textFill="WHITE">
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
@@ -71,5 +70,10 @@
             <Font size="54.0" />
          </font>
       </Text>
+      <Button fx:id="btn_exit" layoutX="744.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleExitAction" styleClass="btn_exit" text="X">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

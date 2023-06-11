@@ -20,7 +20,9 @@ public class trainerDAO implements ItrainerDAO {
     }
 
     @Override
-    public void insert(Object o) { }
+    public void insert(Object o) {
+
+    }
 
     @Override
     public void update(Object o) { }
@@ -43,24 +45,30 @@ public class trainerDAO implements ItrainerDAO {
 
     /**
      * Autenticação de conta
-     * @param email Email ou nickname do usuário
+     *
+     * @param email    Email ou nickname do usuário
      * @param password Senha do usuário
+     * @return
      */
     @Override
-    public void findByLogin(String email, String password) {
+    public Boolean findByLogin(String email, String password) {
         String sql = "SELECT * FROM trainer WHERE (email=? OR nickname=?) AND password=?";
 
         System.out.println(getConn() + "\t******************************************");
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
-            ps.setString(2, password);
+            ps.setString(2, email);
+            ps.setString(3, password);
 
-            //System.out.printf(String.valueOf(result));
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                return true;
+            }
         } catch (SQLException err) {
             Logger.getLogger(trainerDAO.class.getName()).log(Level.SEVERE, null, err);
         }
-
+        return false;
     }
 
 }

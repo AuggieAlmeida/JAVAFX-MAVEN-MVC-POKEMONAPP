@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.loginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,7 +41,7 @@
                <font>
                   <Font name="System Bold" size="20.0" />
                </font></Button>
-            <Button fx:id="btn_cad" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" styleClass="btn_cad" text="Cadastrar" textFill="WHITE">
+            <Button fx:id="btn_cad" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#btnCadOnClick" prefHeight="60.0" prefWidth="150.0" styleClass="btn_cad" text="Cadastrar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -51,7 +51,7 @@
             </Button>
          </children>
       </HBox>
-      <Button fx:id="btn_exit" layoutX="734.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitAction" styleClass="btn_close" text="X">
+      <Button fx:id="btn_exit" layoutX="734.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleExitAction" styleClass="btn_exit" text="X">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
