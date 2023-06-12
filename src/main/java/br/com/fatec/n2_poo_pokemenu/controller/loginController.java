@@ -72,7 +72,7 @@ public class loginController implements Initializable {
                 throw new RuntimeException(e);
             }
         } else {
-            lb_auth.setText("Erro");
+            lb_auth.setText("Usuário ou senha incorretos");
         }
     }
 

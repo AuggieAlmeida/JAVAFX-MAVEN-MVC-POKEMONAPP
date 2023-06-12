@@ -12,4 +12,5 @@ module br.com.fatec.n2_poo_pokemenu {
     exports br.com.fatec.n2_poo_pokemenu;
     exports br.com.fatec.n2_poo_pokemenu.controller;
     opens br.com.fatec.n2_poo_pokemenu.controller to javafx.fxml;
+    opens br.com.fatec.n2_poo_pokemenu.model.domain to javafx.base;
 }

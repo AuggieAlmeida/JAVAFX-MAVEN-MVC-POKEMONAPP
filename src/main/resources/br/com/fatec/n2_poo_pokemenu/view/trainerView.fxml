@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,11 +28,6 @@
       </ImageView>
       <Button fx:id="btn_exit" layoutX="746.0" mnemonicParsing="false" onAction="#handleExitAction" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
       <Button fx:id="btn_menu" layoutX="686.0" mnemonicParsing="false" onAction="#btnMenuOnClick" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
-      <Label fx:id="txt_nome" layoutX="132.0" layoutY="90.0" prefHeight="33.0" prefWidth="337.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
       <VBox prefHeight="600.0" prefWidth="100.0">
          <children>
             <Button fx:id="btn_pokedex" mnemonicParsing="false" onAction="#btnPokedexOnClick" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
@@ -42,26 +38,35 @@
             <Button fx:id="btn_config" mnemonicParsing="false" onAction="#btnConfigOnClick" opacity="0.0" prefHeight="100.0" prefWidth="100.0" text="Button" />
          </children>
       </VBox>
+      <Label fx:id="txt_id" layoutX="537.0" layoutY="92.0" prefHeight="49.0" prefWidth="225.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="txt_name" layoutX="132.0" layoutY="90.0" prefHeight="33.0" prefWidth="337.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txt_updtname" layoutX="132.0" layoutY="90.0" prefHeight="33.0" prefWidth="337.0" visible="false" />
       <Label fx:id="txt_nickname" layoutX="132.0" layoutY="160.0" prefHeight="33.0" prefWidth="337.0">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="txt_nickname1" layoutX="537.0" layoutY="92.0" prefHeight="49.0" prefWidth="225.0">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
+      <TextField fx:id="txt_updtNickname" layoutX="132.0" layoutY="160.0" prefHeight="33.0" prefWidth="337.0" visible="false" />
       <Label fx:id="txt_email" layoutX="132.0" layoutY="233.0" prefHeight="33.0" prefWidth="337.0">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
+      <TextField fx:id="txt_updtEmail" layoutX="132.0" layoutY="233.0" prefHeight="33.0" prefWidth="337.0" visible="false" />
       <Label fx:id="txt_money" layoutX="132.0" layoutY="310.0" prefHeight="33.0" prefWidth="337.0">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
+      <TextField fx:id="txt_updtMoney" layoutX="132.0" layoutY="310.0" prefHeight="33.0" prefWidth="337.0" visible="false" />
       <Label fx:id="txt_party" layoutX="132.0" layoutY="404.0" prefHeight="33.0" prefWidth="337.0">
          <font>
             <Font size="22.0" />
@@ -90,5 +95,6 @@
       <Button fx:id="btn_delete" layoutX="527.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnDelOnClick" opacity="0.0" prefHeight="62.0" prefWidth="61.0" text="Button" />
       <Button fx:id="btn_exchange" layoutX="619.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnExcOnClick" opacity="0.0" prefHeight="62.0" prefWidth="61.0" text="Button" />
       <Button fx:id="btn_update" layoutX="711.0" layoutY="506.0" mnemonicParsing="false" onAction="#btnUpdtOnClick" opacity="0.0" prefHeight="62.0" prefWidth="61.0" text="Button" />
+      <TextField fx:id="txt_updtAge" layoutX="662.0" layoutY="437.0" prefHeight="37.0" prefWidth="103.0" visible="false" />
    </children>
 </AnchorPane>

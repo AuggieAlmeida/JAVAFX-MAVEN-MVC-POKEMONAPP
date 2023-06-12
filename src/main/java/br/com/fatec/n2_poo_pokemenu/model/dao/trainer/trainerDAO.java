@@ -1,12 +1,12 @@
 package br.com.fatec.n2_poo_pokemenu.model.dao.trainer;
-
-import br.com.fatec.n2_poo_pokemenu.controller.registerController;
 import br.com.fatec.n2_poo_pokemenu.model.domain.trainer;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 
 public class trainerDAO implements ItrainerDAO {
     private Connection conn;
@@ -17,7 +17,7 @@ public class trainerDAO implements ItrainerDAO {
         this.conn = connection;
     }
 
-    private trainer t = null;
+    private final trainer t = null;
 
     /**
      * Autenticação de conta
@@ -30,7 +30,6 @@ public class trainerDAO implements ItrainerDAO {
     public Boolean findByLogin(String email, String password) {
         String sql = "SELECT * FROM trainer WHERE (email=? OR nickname=?) AND password=?";
 
-        System.out.println(getConn() + "\t******************************************");
         try{
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, email);
@@ -39,6 +38,9 @@ public class trainerDAO implements ItrainerDAO {
 
             ResultSet result = ps.executeQuery();
             if (result.next()) {
+                String key = "logged";
+                String property = String.valueOf(result.getInt("trainerId"));
+                System.setProperty(key, property);
                 return true;
             }
         } catch (SQLException err) {
@@ -71,23 +73,74 @@ public class trainerDAO implements ItrainerDAO {
     }
 
     @Override
-    public void updateTrainer(trainer trainer) {
+    public void updateTrainer(trainer t) {
+        String sql = "UPDATE trainer SET name=?, nickname=?, email=?, age=?, money=? WHERE trainerID=?";
 
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, t.getName());
+            ps.setString(2, t.getNickname());
+            ps.setString(3, t.getEmail());
+            ps.setInt(4, t.getAge());
+            ps.setDouble(5, t.getMoney());
+            ps.setInt(6, Integer.parseInt(System.getProperty("logged")));
+
+            ps.execute();
+        } catch (SQLException err) {
+            Logger.getLogger(trainerDAO.class.getName()).log(Level.SEVERE, null, err);
+        }
     }
 
     @Override
-    public void deleteTrainer(trainer trainer) {
+    public void deleteTrainer() {
+        String sql = "DELETE FROM trainer WHERE trainerId=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(System.getProperty("logged")));
+            ps.execute();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public trainer getTrainerById(int trainerId) {
+        String sql = "SELECT * FROM trainer WHERE trainerId=?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, trainerId);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                trainer t = new trainer(result.getInt("trainerId"), result.getString("name"), result.getString("nickname"), result.getString("email"), result.getString("password"), result.getInt("age"), result.getString("gender"), result.getDouble("money"));
+                t.setMoney(result.getDouble("money"));
+                t.setDate(result.getDate("date").toLocalDate());
+                return t;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
 
+
     @Override
     public List<trainer> selectAllTrainers() {
+        String sql = "SELECT * FROM trainer";
+        List<trainer> trainers = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            while (result.next()) {
+                trainer t = new trainer(result.getInt("trainerId"), result.getString("name"), result.getString("nickname"), result.getString("email"), result.getString("password"), result.getInt("age"), result.getString("gender"), result.getDouble("money"));
+                trainers.add(t);
+            }
+            return trainers;
+        } catch (SQLException ex) {
+            Logger.getLogger(trainerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }
