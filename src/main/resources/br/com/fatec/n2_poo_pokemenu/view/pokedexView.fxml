@@ -6,26 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.menuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.partyController">
    <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/pokedex/pokedexbg.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="55.0" fitWidth="700.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/menubar.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="600.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" y="-1.0">
          <image>
-            <Image url="@../imgs/sidebar.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="230.0" fitWidth="520.0" layoutX="172.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imgs/menu/pokemon-logo-8.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="55.0" fitWidth="440.0" layoutX="432.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../imgs/menu/a6c357f049444a976b36808db4767be2.png" />
+            <Image url="@../imgs/pokedex/sidebarpokedex.png" />
          </image>
       </ImageView>
       <VBox prefHeight="600.0" prefWidth="100.0">
@@ -39,5 +34,6 @@
          </children>
       </VBox>
       <Button fx:id="btn_exit" layoutX="746.0" mnemonicParsing="false" onAction="#handleExitAction" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
+      <Button fx:id="btn_menu" layoutX="686.0" mnemonicParsing="false" onAction="#btnMenuOnClick" opacity="0.0" prefHeight="55.0" prefWidth="45.0" text="Button" />
    </children>
 </AnchorPane>

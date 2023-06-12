@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class menuController implements Initializable {
-
-    Stage stage;
+public class socialController implements Initializable {
     @FXML
     public Button btn_pokedex;
     @FXML
@@ -32,6 +30,7 @@ public class menuController implements Initializable {
     public Button btn_exit;
     @FXML
     public Button btn_menu;
+    private Stage stage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,6 +41,18 @@ public class menuController implements Initializable {
     private void handleExitAction(ActionEvent event) {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnMenuOnClick(ActionEvent event) {
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/menuView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

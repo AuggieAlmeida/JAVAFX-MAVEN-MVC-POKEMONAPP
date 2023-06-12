@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class menuController implements Initializable {
-
+public class partyController implements Initializable {
     Stage stage;
     @FXML
     public Button btn_pokedex;
@@ -42,6 +41,18 @@ public class menuController implements Initializable {
     private void handleExitAction(ActionEvent event) {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void btnMenuOnClick(ActionEvent event) {
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/menuView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

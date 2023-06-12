@@ -1,7 +1,7 @@
 package br.com.fatec.n2_poo_pokemenu.model.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class trainer implements Serializable {
     private Integer trainerId;
@@ -10,12 +10,12 @@ public class trainer implements Serializable {
     private String email;
     private String password;
     private int age;
-    private Boolean gender;
+    private String gender;
     private Double money;
-    private Date date;
+    private LocalDate date;
 
     // Construtor
-    public trainer(Integer trainerId, String name, String nickname, String email, String password, int age, Boolean gender, Double money, Date date) {
+    public trainer(Integer trainerId, String name, String nickname, String email, String password, int age, String gender, Double money) {
         this.trainerId = trainerId;
         this.name = name;
         this.nickname = nickname;
@@ -24,7 +24,7 @@ public class trainer implements Serializable {
         this.age = age;
         this.gender = gender;
         this.money = money;
-        this.date = date;
+        this.date = java.time.LocalDate.now();
     }
 
 
@@ -43,6 +43,14 @@ public class trainer implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getSecondName() {
@@ -77,11 +85,11 @@ public class trainer implements Serializable {
         age = age;
     }
 
-    public Boolean getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -93,11 +101,11 @@ public class trainer implements Serializable {
         this.money = money;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
