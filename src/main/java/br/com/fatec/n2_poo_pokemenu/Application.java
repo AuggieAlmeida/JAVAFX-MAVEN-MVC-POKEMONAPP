@@ -11,7 +11,7 @@ public class Application extends javafx.application.Application {
     double x, y = 0;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view/menuView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("view/loginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);

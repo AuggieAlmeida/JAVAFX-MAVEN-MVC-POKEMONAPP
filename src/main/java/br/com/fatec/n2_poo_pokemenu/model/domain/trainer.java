@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class trainer implements Serializable {
+
     private Integer trainerId;
     private String name;
     private String nickname;
@@ -13,7 +14,6 @@ public class trainer implements Serializable {
     private String gender;
     private Double money;
     private LocalDate date;
-
     // Construtor
     public trainer(Integer trainerId, String name, String nickname, String email, String password, int age, String gender, Double money) {
         this.trainerId = trainerId;

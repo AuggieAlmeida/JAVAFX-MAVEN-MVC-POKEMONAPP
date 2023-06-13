@@ -18,7 +18,6 @@ public class pokemonDAO implements IpokemonDAO {
 
     @Override
     public void deletePokemon(pokemon pok) {
-
     }
 
     @Override

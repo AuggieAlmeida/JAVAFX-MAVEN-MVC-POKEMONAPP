@@ -78,6 +78,7 @@ public class trainerDAO implements ItrainerDAO {
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
+            System.out.println(t.getMoney());
             ps.setString(1, t.getName());
             ps.setString(2, t.getNickname());
             ps.setString(3, t.getEmail());

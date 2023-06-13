@@ -94,7 +94,7 @@ public class trainerController implements Initializable {
         txt_email.setText(t.getEmail());
         txt_money.setText(String.valueOf(t.getMoney()));
         txt_party.setText("PARTY:\t\t\t\t0/6");
-        txt_social.setText("SOCIAL:\t\t\t0");
+        txt_social.setText("SOCIAL:\t\t\t\t0");
         txt_date.setText("Criado em:\t\t" + t.getDate());
         txt_age.setText(String.valueOf(t.getAge()));
         txt_gender.setText(t.getGender());
@@ -109,19 +109,26 @@ public class trainerController implements Initializable {
     @FXML
     private void btnDelOnClick(ActionEvent event) {
         trainerDAO.deleteTrainer();
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/loginView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void btnExcOnClick(ActionEvent event) {
         if(txt_updtMoney.isVisible()) {
             txt_updtMoney.setVisible(false);
-            trainer t = new trainer(Integer.parseInt(txt_id.getText()), txt_name.getText(), txt_nickname.getText(), txt_email.getText(), "...", Integer.parseInt(txt_age.getText()), txt_gender.getText(), Double.parseDouble(txt_money.getText()));
+            trainer t = new trainer(Integer.parseInt(txt_id.getText()), txt_name.getText(), txt_nickname.getText(), txt_email.getText(), "...", Integer.parseInt(txt_age.getText()), txt_gender.getText(), Double.parseDouble(txt_updtMoney.getText()));
             trainerDAO.updateTrainer(t);
             handleLabelLoad();
         } else {
             txt_updtMoney.setVisible(true);
+            txt_updtMoney.setText(txt_money.getText());
         }
     }
 
@@ -132,14 +139,18 @@ public class trainerController implements Initializable {
             txt_updtNickname.setVisible(false);
             txt_updtEmail.setVisible(false);
             txt_updtAge.setVisible(false);
-            trainer t = new trainer(Integer.parseInt(txt_id.getText()), txt_updtname.getText(), txt_updtNickname.getText(), txt_updtEmail.getText(), "...", Integer.parseInt(txt_updtAge.getText()), txt_gender.getText(), Double.parseDouble(txt_updtMoney.getText()));
+            trainer t = new trainer(Integer.parseInt(txt_id.getText()), txt_updtname.getText(), txt_updtNickname.getText(), txt_updtEmail.getText(), "...", Integer.parseInt(txt_updtAge.getText()), txt_gender.getText(), Double.parseDouble(txt_money.getText()));
             trainerDAO.updateTrainer(t);
             handleLabelLoad();
         } else {
             txt_updtname.setVisible(true);
+            txt_updtname.setText(txt_name.getText());
             txt_updtNickname.setVisible(true);
+            txt_updtNickname.setText(txt_nickname.getText());
             txt_updtEmail.setVisible(true);
+            txt_updtEmail.setText(txt_updtEmail.getText());
             txt_updtAge.setVisible(true);
+            txt_updtAge.setText(txt_age.getText());
         }
     }
 
