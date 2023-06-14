@@ -4,6 +4,8 @@ import br.com.fatec.n2_poo_pokemenu.Application;
 import br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO;
 import br.com.fatec.n2_poo_pokemenu.model.database.Idatabase;
 import br.com.fatec.n2_poo_pokemenu.model.database.databaseFactory;
+import br.com.fatec.n2_poo_pokemenu.model.domain.pokemon;
+import br.com.fatec.n2_poo_pokemenu.services.pokemonApiClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class loginController implements Initializable {
@@ -86,7 +89,5 @@ public class loginController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }

@@ -49,6 +49,8 @@ public class trainerDAO implements ItrainerDAO {
         return false;
     }
 
+
+
     @Override
     public boolean saveTrainer(trainer t) {
         String sql = "INSERT INTO trainer(name, nickname, email, password, age, gender, money, date) VALUES (?,?,?,?,?,?,?,?)";
@@ -78,7 +80,6 @@ public class trainerDAO implements ItrainerDAO {
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            System.out.println(t.getMoney());
             ps.setString(1, t.getName());
             ps.setString(2, t.getNickname());
             ps.setString(3, t.getEmail());
@@ -125,8 +126,6 @@ public class trainerDAO implements ItrainerDAO {
         return null;
     }
 
-
-
     @Override
     public List<trainer> selectAllTrainers() {
         String sql = "SELECT * FROM trainer";
@@ -144,4 +143,28 @@ public class trainerDAO implements ItrainerDAO {
         }
         return null;
     }
+
+    @Override
+    public List<trainer> filteredQuery(String search, String start, String end) {
+        String sql = "SELECT * FROM trainer WHERE (name LIKE ? OR nickname LIKE ? OR email LIKE ?) AND (age >= ? AND age <= ?)";
+        List<trainer> trainers = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + search + "%");
+            ps.setString(2, "%" + search + "%");
+            ps.setString(3, "%" + search + "%");
+            ps.setInt(4, Integer.parseInt(start));
+            ps.setInt(5, Integer.parseInt(end));
+
+            ResultSet result = ps.executeQuery();
+            while (result.next()) {
+                trainer t = new trainer(result.getInt("trainerId"), result.getString("name"), result.getString("nickname"), result.getString("email"), result.getString("password"), result.getInt("age"), result.getString("gender"), result.getDouble("money"));
+                trainers.add(t);
+            }
+            return trainers;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

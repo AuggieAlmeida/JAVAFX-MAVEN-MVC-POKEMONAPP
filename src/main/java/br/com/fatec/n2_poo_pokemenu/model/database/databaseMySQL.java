@@ -15,7 +15,7 @@ public class databaseMySQL implements Idatabase {
     public Connection connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/pokemenu", "root","root");
+            this.conn = DriverManager.getConnection("jdbc:mysql://localhost/pokemondb", "root","root");
             return this.conn;
         } catch (SQLException | ClassNotFoundException err) {
             Logger.getLogger(databaseMySQL.class.getName()).log(Level.SEVERE, null, err);

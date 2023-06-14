@@ -17,6 +17,11 @@
             <Image url="@../imgs/Frame%202register.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="275.0" fitWidth="494.0" layoutX="152.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imgs/cadastro.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="txt_name" alignment="CENTER" layoutX="210.0" layoutY="159.0" prefHeight="35.0" prefWidth="190.0" promptText="Nome" styleClass="textfield">
          <font>
             <Font size="16.0" />
@@ -63,7 +68,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <ImageView fitHeight="120.0" fitWidth="400.0" layoutX="210.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="170.0" layoutX="416.0" layoutY="159.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
       <Text fill="WHITE" layoutX="450.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="icon">
          <font>

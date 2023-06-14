@@ -148,7 +148,7 @@ public class trainerController implements Initializable {
             txt_updtNickname.setVisible(true);
             txt_updtNickname.setText(txt_nickname.getText());
             txt_updtEmail.setVisible(true);
-            txt_updtEmail.setText(txt_updtEmail.getText());
+            txt_updtEmail.setText(txt_email.getText());
             txt_updtAge.setVisible(true);
             txt_updtAge.setText(txt_age.getText());
         }

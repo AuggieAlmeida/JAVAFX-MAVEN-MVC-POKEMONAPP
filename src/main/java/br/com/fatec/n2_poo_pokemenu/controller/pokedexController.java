@@ -1,30 +1,20 @@
 package br.com.fatec.n2_poo_pokemenu.controller;
 
 import br.com.fatec.n2_poo_pokemenu.Application;
-import br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO;
-import br.com.fatec.n2_poo_pokemenu.model.database.Idatabase;
-import br.com.fatec.n2_poo_pokemenu.model.database.databaseFactory;
-import br.com.fatec.n2_poo_pokemenu.model.domain.trainer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import br.com.fatec.n2_poo_pokemenu.model.domain.pokemon;
+import br.com.fatec.n2_poo_pokemenu.services.pokemonApiClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Arrays;
 
-public class socialController implements Initializable {
+public class pokedexController {
     @FXML
     public Button btn_pokedex;
     @FXML
@@ -42,99 +32,41 @@ public class socialController implements Initializable {
     @FXML
     public Button btn_menu;
     @FXML
-    public TextField txt_name;
+    public Label txt_id;
     @FXML
-    public Label txt_nickname;
+    public Label txt_att;
     @FXML
-    public TextField txt_start;
+    public Label txt_wgt;
     @FXML
-    public TextField txt_end;
-    @FXML
-    public TextField txt_id;
-    @FXML
-    public Button btn_cln;
-    @FXML
-    public Button btn_play;
-    @FXML
-    public Button btn_list;
-    @FXML
-    public TableView<trainer> tableView;
-    @FXML
-    public TableColumn<trainer, String> columnID;
-    @FXML
-    public TableColumn<trainer, String> columnName;
-    @FXML
-    public TableColumn<trainer, String> columnNick;
-    @FXML
-    public TableColumn<trainer, String> columnEmail;
-    @FXML
-    public TableColumn<trainer, String> columnIdade;
-    @FXML
-    public TableColumn<trainer, LocalDate> columnReg;
-    private Stage stage;
+    public Label txt_hgt;
+    Stage stage;
 
-    private final Idatabase db = databaseFactory.getDatabase("mysql");
-    private final Connection conn = db != null ? db.connect() : null;
-    private final trainerDAO trainerDAO = new trainerDAO();
+    private pokemon srchPokemon(){
+        try {
+            pokemonApiClient apiClient = new pokemonApiClient();
+            int pokemonId = 25; // ID do Pokémon desejado
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        trainerDAO.setConn(conn);
-        handleLoadTable();
-        btnClnOnClick(new ActionEvent());
+            pokemon pokemonInfo = apiClient.getPokemonInfo(pokemonId);
+            if (pokemonInfo != null) {
+                System.out.println("ID: " + pokemonInfo.getId());
+                System.out.println("Nome: " + pokemonInfo.getName());
+                System.out.println("Peso: " + pokemonInfo.getWeight());
+                System.out.println("Altura: " + pokemonInfo.getHeight());
+                System.out.println("Tipos: " + Arrays.toString(pokemonInfo.getTypes()));
+            } else {
+                System.out.println("Não foi possível obter as informações do Pokémon.");
+            }
+            return pokemonInfo;
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Ocorreu um erro durante a solicitação do Pokémon: " + e.getMessage());
+        }
+        return null;
     }
-
-    public void handleLoadTable(){
-        ObservableList<trainer> trainers = FXCollections.observableArrayList();
-        trainers.addAll(trainerDAO.selectAllTrainers());
-        tableView.setItems(trainers);
-
-        columnID.setCellValueFactory(new PropertyValueFactory<>("trainerId"));
-        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnNick.setCellValueFactory(new PropertyValueFactory<>("nickname"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        columnIdade.setCellValueFactory(new PropertyValueFactory<>("age"));
-        columnReg.setCellValueFactory(new PropertyValueFactory<>("date"));
-    }
-
 
     @FXML
     private void handleExitAction(ActionEvent event) {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         stage.close();
-    }
-
-    @FXML
-    private void btnClnOnClick(ActionEvent event) {
-        txt_name.setText("");
-        txt_id.setText("");
-        txt_start.setText("0");
-        txt_end.setText("100");
-    }
-
-    @FXML
-    private void btnSrcOnClick(ActionEvent event) {
-        ObservableList<trainer> trainers = FXCollections.observableArrayList();
-        if (txt_id.getText() == "") {
-            trainers.addAll(trainerDAO.filteredQuery(txt_name.getText(), txt_start.getText(), txt_end.getText()));
-        } else {
-            trainers.addAll(trainerDAO.getTrainerById(Integer.parseInt(txt_id.getText())));
-        }
-        tableView.setItems(trainers);
-
-        columnID.setCellValueFactory(new PropertyValueFactory<>("trainerId"));
-        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        columnNick.setCellValueFactory(new PropertyValueFactory<>("nickname"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        columnIdade.setCellValueFactory(new PropertyValueFactory<>("age"));
-        columnReg.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-    }
-
-    @FXML
-    private void btnListOnClick(ActionEvent event) {
-        btnClnOnClick(event);
-        handleLoadTable();
     }
 
     @FXML
@@ -220,4 +152,5 @@ public class socialController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
 }

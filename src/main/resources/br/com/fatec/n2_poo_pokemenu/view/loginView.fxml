@@ -27,9 +27,9 @@
             <Font size="16.0" />
          </font></TextField>
       <Circle fill="#9f2727" layoutX="618.0" layoutY="328.0" radius="40.0" stroke="#9f2727" strokeType="INSIDE" />
-      <ImageView fitHeight="182.0" fitWidth="443.0" layoutX="236.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="168.0" fitWidth="407.0" layoutX="261.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imgs/menu/pokemon-logo-8.png" />
+            <Image url="@../imgs/pokemenu.png" />
          </image>
       </ImageView>
       <HBox alignment="CENTER" layoutX="172.0" layoutY="398.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="380.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="248.0">

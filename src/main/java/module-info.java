@@ -7,7 +7,11 @@ module br.com.fatec.n2_poo_pokemenu {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
-
+    requires com.fasterxml.jackson.annotation;
+    opens br.com.fatec.n2_poo_pokemenu.services to com.fasterxml.jackson.databind;
+    requires spring.web;
+    requires java.net.http;
+    requires com.fasterxml.jackson.databind;
     opens br.com.fatec.n2_poo_pokemenu to javafx.fxml;
     exports br.com.fatec.n2_poo_pokemenu;
     exports br.com.fatec.n2_poo_pokemenu.controller;
