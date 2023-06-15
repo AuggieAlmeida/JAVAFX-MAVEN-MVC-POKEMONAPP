@@ -2,13 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.pokedexController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.pokedexController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -43,5 +46,22 @@
       <Label fx:id="txt_hgt" layoutX="557.0" layoutY="128.0" prefHeight="35.0" prefWidth="215.0" text="Altura:" wrapText="true" />
       <TextField fx:id="txt_src" layoutX="384.0" layoutY="81.0" prefHeight="25.0" prefWidth="129.0" />
       <Button fx:id="btn_src" layoutX="515.0" layoutY="80.0" mnemonicParsing="false" onAction="#btnSrcOnClick" opacity="0.0" prefHeight="25.0" prefWidth="25.0" text="Button" />
+      <TableView fx:id="tableView" layoutX="127.0" layoutY="286.0" onMouseClicked="#tblPokeOnClick" prefHeight="288.0" prefWidth="644.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="37.0" text="ID" />
+          <TableColumn fx:id="nameColumn" prefWidth="232.0" text="Nome" />
+            <TableColumn fx:id="atbColumn" minWidth="8.0" prefWidth="187.0" text="Atributos" />
+            <TableColumn fx:id="wgtColumn" prefWidth="93.0" text="Peso" />
+            <TableColumn fx:id="hgtColumn" prefWidth="94.0" text="altura" />
+        </columns>
+      </TableView>
+      <Button fx:id="btn_capture" layoutX="636.0" layoutY="201.0" mnemonicParsing="false" onAction="#btnCapOnClick" opacity="0.0" prefHeight="61.0" prefWidth="60.0" text="Button" />
+      <Label layoutX="312.0" layoutY="193.0" prefHeight="25.0" prefWidth="60.0" text="Party:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="txt_pt" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="312.0" layoutY="215.0" prefHeight="41.0" prefWidth="223.0" wrapText="true" />
+      <Button fx:id="btn_remove" layoutX="553.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnRmvOnClick" opacity="0.0" prefHeight="61.0" prefWidth="60.0" text="Button" />
    </children>
 </AnchorPane>

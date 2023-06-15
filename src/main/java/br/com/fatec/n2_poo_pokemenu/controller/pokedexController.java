@@ -1,20 +1,31 @@
 package br.com.fatec.n2_poo_pokemenu.controller;
 
 import br.com.fatec.n2_poo_pokemenu.Application;
+import br.com.fatec.n2_poo_pokemenu.model.dao.pokemon.pokemonDAO;
+import br.com.fatec.n2_poo_pokemenu.model.database.Idatabase;
+import br.com.fatec.n2_poo_pokemenu.model.database.databaseFactory;
 import br.com.fatec.n2_poo_pokemenu.model.domain.pokemon;
-import br.com.fatec.n2_poo_pokemenu.services.pokemonApiClient;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
 import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class pokedexController {
+
+public class pokedexController implements Initializable {
     @FXML
     public Button btn_pokedex;
     @FXML
@@ -39,28 +50,130 @@ public class pokedexController {
     public Label txt_wgt;
     @FXML
     public Label txt_hgt;
+    @FXML
+    public TextField txt_src;
+    @FXML
+    public Button btn_src;
+    @FXML
+    public Label txt_pt;
+    @FXML
+    public TableView<pokemon> tableView;
+    @FXML
+    public TableColumn<pokemon, Integer> idColumn;
+    @FXML
+    public TableColumn<pokemon, String> nameColumn;
+    @FXML
+    public TableColumn<pokemon, String> atbColumn;
+    @FXML
+    public TableColumn<pokemon, Float> wgtColumn;
+    @FXML
+    public TableColumn<pokemon, Float> hgtColumn;
     Stage stage;
 
-    private pokemon srchPokemon(){
-        try {
-            pokemonApiClient apiClient = new pokemonApiClient();
-            int pokemonId = 25; // ID do Pokémon desejado
+    private final Idatabase db = databaseFactory.getDatabase("mysql");
+    private final Connection conn = db != null ? db.connect() : null;
+    private final pokemonDAO pokemonDAO = new pokemonDAO();
 
-            pokemon pokemonInfo = apiClient.getPokemonInfo(pokemonId);
-            if (pokemonInfo != null) {
-                System.out.println("ID: " + pokemonInfo.getId());
-                System.out.println("Nome: " + pokemonInfo.getName());
-                System.out.println("Peso: " + pokemonInfo.getWeight());
-                System.out.println("Altura: " + pokemonInfo.getHeight());
-                System.out.println("Tipos: " + Arrays.toString(pokemonInfo.getTypes()));
-            } else {
-                System.out.println("Não foi possível obter as informações do Pokémon.");
-            }
-            return pokemonInfo;
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Ocorreu um erro durante a solicitação do Pokémon: " + e.getMessage());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        pokemonDAO.setConn(conn);
+        handleLoadTable();
+        txt_pt.setText(pokemonDAO.getPokemonList().toString().replace("[", ""). replace("]", ""));
+    }
+
+    public void handleLoadTable(){
+        ObservableList<pokemon> pokemons = FXCollections.observableArrayList();
+        pokemons.addAll(pokemonDAO.getAllPokemon());
+        tableView.setItems(pokemons);
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        atbColumn.setCellValueFactory(cellData -> {
+            pokemon p = cellData.getValue();
+            String types = String.join(", ", p.getTypes());
+            return new SimpleStringProperty(types);
+        });
+
+        wgtColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        hgtColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
+    }
+
+    @FXML
+    public void btnRmvOnClick(ActionEvent event) {
+        pokemonDAO.removePokemonFromList(txt_src.getText());
+        txt_pt.setText(pokemonDAO.getPokemonList().toString().replace("[", ""). replace("]", ""));
+    }
+
+    @FXML
+    public void btnCapOnClick(ActionEvent event) {
+        pokemon selectedPokemon = tableView.getSelectionModel().getSelectedItem();
+
+        if (selectedPokemon != null) {
+            int id = selectedPokemon.getId();
+            String name = selectedPokemon.getName();
+            float weight = selectedPokemon.getWeight();
+            float height = selectedPokemon.getHeight();
+            String[] types = selectedPokemon.getTypes();
+
+            txt_id.setText(String.valueOf(id));
+            txt_src.setText(name);
+            txt_hgt.setText("Altura: " + height + " feets");
+            txt_wgt.setText("Peso: " + weight + " pounds");
+            txt_att.setText(Arrays.toString(types).replace("[", ""). replace("]", ""));
+
+            pokemonDAO.savePokemon(selectedPokemon);
+            txt_pt.setText(pokemonDAO.getPokemonList().toString().replace("[", ""). replace("]", ""));
         }
-        return null;
+
+
+    }
+
+    @FXML
+    public void tblPokeOnClick(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            TableView<pokemon> table = (TableView<pokemon>) event.getSource();
+            pokemon selectedPokemon = table.getSelectionModel().getSelectedItem();
+
+            if (selectedPokemon != null) {
+                int id = selectedPokemon.getId();
+                String name = selectedPokemon.getName();
+                float weight = selectedPokemon.getWeight();
+                float height = selectedPokemon.getHeight();
+                String[] types = selectedPokemon.getTypes();
+
+                // Faça o que for necessário com os valores obtidos
+                txt_id.setText(String.valueOf(id));
+                txt_src.setText(name);
+                txt_hgt.setText("Altura: " + height + " feets");
+                txt_wgt.setText("Peso: " + weight + " pounds");
+                txt_att.setText(Arrays.toString(types).replace("[", ""). replace("]", ""));
+            }
+        }
+    }
+
+
+    private void srchPokemon(){
+        ObservableList<pokemon> pokemons = FXCollections.observableArrayList();
+        pokemons.addAll(pokemonDAO.searchPokemon(txt_src.getText()));
+
+        tableView.setItems(pokemons);
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        atbColumn.setCellValueFactory(cellData -> {
+            TableColumn.CellDataFeatures<pokemon, String> cellDataFeatures = (TableColumn.CellDataFeatures<pokemon, String>) cellData;
+            pokemon p = cellDataFeatures.getValue();
+            String types = String.join(", ", p.getTypes());
+            return new SimpleStringProperty(types);
+        });
+
+        wgtColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        hgtColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
+    }
+
+    @FXML
+    private void btnSrcOnClick(ActionEvent event) {
+        srchPokemon();
     }
 
     @FXML
@@ -152,5 +265,4 @@ public class pokedexController {
             throw new RuntimeException(e);
         }
     }
-
 }

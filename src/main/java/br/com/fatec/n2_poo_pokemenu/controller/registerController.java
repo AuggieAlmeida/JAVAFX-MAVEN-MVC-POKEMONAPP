@@ -85,5 +85,13 @@ public class registerController implements Initializable {
     private void btnCadOnClick(ActionEvent event) {
         trainer t = new trainer(null,txt_name.getText() + " " + txt_secname.getText(), txt_nick.getText(), txt_email.getText(), txt_pass.getText(), Integer.parseInt(txt_age.getText()), cmb_gender.getValue().toString(), 40000.0);
         trainerDAO.saveTrainer(t);
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/loginView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

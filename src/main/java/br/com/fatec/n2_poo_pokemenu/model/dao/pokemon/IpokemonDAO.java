@@ -9,5 +9,6 @@ public interface IpokemonDAO {
     void updatePokemon(pokemon pok);
     void deletePokemon(pokemon pok);
     pokemon getPokemonById(int pokeId);
+    List<pokemon> searchPokemon(String search);
     List<pokemon> getAllPokemon();
 }

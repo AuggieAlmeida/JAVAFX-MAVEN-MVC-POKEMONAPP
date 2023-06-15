@@ -1,11 +1,12 @@
 package br.com.fatec.n2_poo_pokemenu.controller;
 
 import br.com.fatec.n2_poo_pokemenu.Application;
+import br.com.fatec.n2_poo_pokemenu.model.dao.pokemon.pokemonDAO;
 import br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO;
 import br.com.fatec.n2_poo_pokemenu.model.database.Idatabase;
 import br.com.fatec.n2_poo_pokemenu.model.database.databaseFactory;
+import br.com.fatec.n2_poo_pokemenu.model.domain.pokemon;
 import br.com.fatec.n2_poo_pokemenu.model.domain.trainer;
-import br.com.fatec.n2_poo_pokemenu.model.dao.trainer.trainerDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class trainerController implements Initializable {
@@ -80,6 +82,8 @@ public class trainerController implements Initializable {
     private final Idatabase db = databaseFactory.getDatabase("mysql");
     private final Connection conn = db != null ? db.connect() : null;
     private final trainerDAO trainerDAO = new trainerDAO();
+    private final pokemonDAO pokemonDAO = new pokemonDAO();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         trainerDAO.setConn(conn);
@@ -93,13 +97,16 @@ public class trainerController implements Initializable {
         txt_nickname.setText(t.getNickname());
         txt_email.setText(t.getEmail());
         txt_money.setText(String.valueOf(t.getMoney()));
-        txt_party.setText("PARTY:\t\t\t\t0/6");
+        List<String> pokemonList = pokemonDAO.getPokemonList();
+        int pokemonCount = pokemonList.size();
+        txt_party.setText("PARTY:\t\t\t\t" + pokemonCount + "/6");
         txt_social.setText("SOCIAL:\t\t\t\t0");
         txt_date.setText("Criado em:\t\t" + t.getDate());
         txt_age.setText(String.valueOf(t.getAge()));
         txt_gender.setText(t.getGender());
 
     }
+
     @FXML
     private void handleExitAction(ActionEvent event) {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();

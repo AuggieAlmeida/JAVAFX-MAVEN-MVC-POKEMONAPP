@@ -8,6 +8,8 @@ module br.com.fatec.n2_poo_pokemenu {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires com.fasterxml.jackson.annotation;
+    exports br.com.fatec.n2_poo_pokemenu.model.domain;
+
     opens br.com.fatec.n2_poo_pokemenu.services to com.fasterxml.jackson.databind;
     requires spring.web;
     requires java.net.http;
@@ -16,5 +18,5 @@ module br.com.fatec.n2_poo_pokemenu {
     exports br.com.fatec.n2_poo_pokemenu;
     exports br.com.fatec.n2_poo_pokemenu.controller;
     opens br.com.fatec.n2_poo_pokemenu.controller to javafx.fxml;
-    opens br.com.fatec.n2_poo_pokemenu.model.domain to javafx.base;
+    opens br.com.fatec.n2_poo_pokemenu.model.domain to javafx.base, com.fasterxml.jackson.databind;
 }

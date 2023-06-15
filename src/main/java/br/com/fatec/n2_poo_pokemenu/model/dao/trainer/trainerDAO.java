@@ -17,7 +17,6 @@ public class trainerDAO implements ItrainerDAO {
         this.conn = connection;
     }
 
-    private final trainer t = null;
 
     /**
      * Autenticação de conta
