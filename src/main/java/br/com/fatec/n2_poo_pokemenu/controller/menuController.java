@@ -40,8 +40,14 @@ public class menuController implements Initializable {
 
     @FXML
     private void handleExitAction(ActionEvent event) {
-        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-        stage.close();
+        try {
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/loginxView.fxml"));
+            Scene scene = new Scene(loader.load());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

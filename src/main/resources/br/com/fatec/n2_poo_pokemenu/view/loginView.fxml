@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.loginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/loginCSS.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.fatec.n2_poo_pokemenu.controller.loginController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,7 +22,7 @@
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <TextField fx:id="txt_pass" alignment="CENTER" layoutX="171.0" layoutY="343.0" prefHeight="35.0" prefWidth="380.0" promptText="Senha" styleClass="textfield">
+      <TextField fx:id="txt_pass" accessibleRole="PASSWORD_FIELD" alignment="CENTER" layoutX="171.0" layoutY="343.0" prefHeight="35.0" prefWidth="380.0" promptText="Senha" styleClass="textfield">
          <font>
             <Font size="16.0" />
          </font></TextField>

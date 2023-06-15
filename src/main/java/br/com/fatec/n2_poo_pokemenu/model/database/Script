@@ -1,0 +1,61 @@
+CREATE TABLE Trainer (
+    trainerId INT PRIMARY KEY,
+    name VARCHAR(80),
+    nickname VARCHAR(80),
+    email VARCHAR(80),
+    password VARCHAR(80),
+    age INT,
+    gender VARCHAR(20),
+    money DOUBLE,
+    date DATE
+);
+
+CREATE TABLE Bag (
+    bagId INT PRIMARY KEY,
+    itemId INT NOT NULL,
+    trainerId INT NOT NULL,
+    qtd INT,
+    type VARCHAR(20),
+    description VARCHAR(255),
+    FOREIGN KEY (trainerId) REFERENCES Trainer(trainerId)
+);
+
+CREATE TABLE Attributes (
+    attributeId INT PRIMARY KEY,
+    name VARCHAR(80),
+    halfdmg VARCHAR(255),
+    halfatk VARCHAR(255),
+    doubledmg VARCHAR(255),
+    doubleatk VARCHAR(255),
+    nodmg VARCHAR(255),
+    noatk VARCHAR(255)
+);
+
+CREATE TABLE Pokemon (
+    pokeId INT PRIMARY KEY,
+    name VARCHAR(80),
+    weight FLOAT,
+    height FLOAT,
+    types VARCHAR(80),
+);
+
+CREATE TABLE Party (
+    partyId INT PRIMARY KEY,
+    trainerId INT NOT NULL,
+    pokeId INT NOT NULL,
+    nickname VARCHAR(80),
+    level INT,
+    queuePos INT,
+    FOREIGN KEY (trainerId) REFERENCES Trainer(trainerId),
+    FOREIGN KEY (pokeId) REFERENCES Pokemon(pokeId)
+);
+
+CREATE TABLE Social (
+    friendshipId INT PRIMARY KEY,
+    trainer1Id INT NOT NULL,
+    trainer2Id INT NOT NULL,
+    status ENUM('pending', 'accepted', 'rejected') DEFAULT 'pending',
+    dateAdded DATE,
+    FOREIGN KEY (trainer1Id) REFERENCES Trainer(trainerId),
+    FOREIGN KEY (trainer2Id) REFERENCES Trainer(trainerId)
+);
